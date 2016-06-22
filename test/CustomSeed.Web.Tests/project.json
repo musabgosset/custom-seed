@@ -3,7 +3,9 @@
 
   "dependencies": {
     "xunit": "2.1.0",
-    "dotnet-test-xunit": "1.0.0-*"
+    "dotnet-test-xunit": "1.0.0-*",
+    "Microsoft.AspNetCore.TestHost": "1.0.0-rc2-final",
+    "CustomSeed.Web": "1.0.0-*"
   },
 
   "frameworks": {
@@ -18,7 +20,14 @@
           "type": "platform"
         }
       }
+    },
+
+    "net451": {
+      "dependencies": {
+        "Selenium.WebDriver": "2.53.0"
+      }
     }
   },
+
   "testRunner": "xunit"
 }
