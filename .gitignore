@@ -4,3 +4,4 @@
 *.lock.json
 bin/
 obj/
+node_modules/

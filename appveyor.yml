@@ -1,5 +1,10 @@
+environment:
+  nodejs_version: "0.12"
 init:
   - git config --global core.autocrlf true
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install
 branches:
   only:
     - master
