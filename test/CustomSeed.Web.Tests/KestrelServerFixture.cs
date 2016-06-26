@@ -17,10 +17,6 @@ namespace CustomSeed.Web.Tests
 
         public KestrelServerFixture()
         {
-
-
-            //string a = typeof(TStartup).Assembly.
-
             IWebHostBuilder builder = new WebHostBuilder()
                 .UseContentRoot("../../../../../../src/CustomSeed.Web")
                 .UseKestrel()

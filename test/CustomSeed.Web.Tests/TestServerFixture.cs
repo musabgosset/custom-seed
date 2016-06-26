@@ -13,11 +13,15 @@ namespace CustomSeed.Web.Tests
     {
         private readonly TestServer _server;
         public HttpClient Client { get; }
-        
+
         public TestServerFixture()
         {
             IWebHostBuilder builder = new WebHostBuilder()
+#if NET451
                 .UseContentRoot("../../../../../../src/CustomSeed.Web")
+#else
+                .UseContentRoot("../../../../../src/CustomSeed.Web")
+#endif
                 .UseStartup(typeof(TStartup));
 
             _server = new TestServer(builder);
