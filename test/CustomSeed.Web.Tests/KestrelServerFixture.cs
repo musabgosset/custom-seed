@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.DotNet.ProjectModel.Resolution;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,12 @@ namespace CustomSeed.Web.Tests
 
         public KestrelServerFixture()
         {
+
+
+            //string a = typeof(TStartup).Assembly.
+
             IWebHostBuilder builder = new WebHostBuilder()
+                .UseContentRoot("../../../../../../src/CustomSeed.Web")
                 .UseKestrel()
                 .UseStartup(typeof(TStartup));
 

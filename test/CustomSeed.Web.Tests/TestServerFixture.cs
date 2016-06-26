@@ -17,6 +17,7 @@ namespace CustomSeed.Web.Tests
         public TestServerFixture()
         {
             IWebHostBuilder builder = new WebHostBuilder()
+                .UseContentRoot("../../../../../../src/CustomSeed.Web")
                 .UseStartup(typeof(TStartup));
 
             _server = new TestServer(builder);

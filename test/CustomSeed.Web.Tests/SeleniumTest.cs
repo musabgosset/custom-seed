@@ -9,23 +9,27 @@ using Xunit;
 
 namespace CustomSeed.Web.Tests
 {
-    public class FirstTest2 : IClassFixture<KestrelServerFixture<CustomSeed.Web.Startup>>
+    public class SeleniumTest : IClassFixture<KestrelServerFixture<CustomSeed.Web.Startup>>, IDisposable
     {
         private readonly KestrelServerFixture<CustomSeed.Web.Startup> _fixture;
+        private readonly IWebDriver _driver = new ChromeDriver();
 
-        public FirstTest2(KestrelServerFixture<CustomSeed.Web.Startup> fixture)
+        public SeleniumTest(KestrelServerFixture<CustomSeed.Web.Startup> fixture)
         {
             this._fixture = fixture;
         }
 
         [Fact]
-        public void SeleniumTest()
+        public void Can_Read_DefaultPage()
         {
-            using (IWebDriver driver = new ChromeDriver())
-            {
-                driver.Navigate().GoToUrl(_fixture.Url);
-                Assert.Contains("Hello World!", driver.PageSource);
-            }
+            _driver.Navigate().GoToUrl(_fixture.Url);
+
+            Assert.Contains("Index page", _driver.PageSource);
+        }
+
+        public void Dispose()
+        {
+            _driver.Dispose();
         }
     }
 }

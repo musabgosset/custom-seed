@@ -19,14 +19,13 @@ namespace CustomSeed.Web.Tests
         }
 
         [Fact]
-        public async Task HttpClientTest()
+        public async Task Can_Read_DefaultPage()
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "http://localhost/");
-
             HttpResponseMessage response = await _fixture.Client.SendAsync(request);
 
             response.EnsureSuccessStatusCode();
-            Assert.Contains("Hello World!", response.Content.ReadAsStringAsync().Result);
+            Assert.Contains("Index page", response.Content.ReadAsStringAsync().Result);
         }
     }
 }
