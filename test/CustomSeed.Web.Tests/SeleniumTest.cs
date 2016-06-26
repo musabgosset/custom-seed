@@ -25,6 +25,15 @@ namespace CustomSeed.Web.Tests
             _driver.Navigate().GoToUrl(_fixture.Url);
 
             Assert.Contains("Index page", _driver.PageSource);
+            Assert.Contains("ng: active", _driver.PageSource);
+        }
+
+        [Fact]
+        public void AngularJS_Is_Active()
+        {
+            _driver.Navigate().GoToUrl(_fixture.Url);
+
+            Assert.Contains("ng: active", _driver.PageSource);
         }
 
         public void Dispose()

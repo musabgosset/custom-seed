@@ -3,7 +3,8 @@
 	"name": "asp.net",
 	"private": true,
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "angular": "^1.5.7"
   },
   "scripts": {
     "postinstall": "gulp"
