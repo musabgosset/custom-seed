@@ -23,6 +23,14 @@ namespace CustomSeed.Web
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AutomaticAuthenticate = true,
+                Events = new CookieAuthenticationEvents
+                {
+                    OnRedirectToLogin = context =>
+                    {
+                        context.Response.StatusCode = 401;
+                        return Task.FromResult<object>(null);
+                    }
+                },
                 AutomaticChallenge = true
             });
 

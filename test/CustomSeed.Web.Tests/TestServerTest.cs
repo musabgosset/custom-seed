@@ -72,6 +72,12 @@ namespace CustomSeed.Web.Tests
             HttpResponseMessage response = await GetSignOutResponse();
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+
+            SetCookieHeaderValue setCookieHeader = SetCookieHeaderValue.ParseList(response.Headers.GetValues("Set-Cookie").ToList()).First();
+
+            Assert.True(setCookieHeader.Expires < DateTime.Now);
+
+            _fixture.Client.DefaultRequestHeaders.Clear();
         }
 
         [Fact]
@@ -81,7 +87,7 @@ namespace CustomSeed.Web.Tests
 
             HttpResponseMessage response = await _fixture.Client.SendAsync(request);
 
-            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
         }
 
         [Fact]
@@ -112,7 +118,6 @@ namespace CustomSeed.Web.Tests
 
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, _fixture.Url + "api/Value");
             
-
             HttpResponseMessage response = await _fixture.Client.SendAsync(request);
             
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
@@ -128,11 +133,14 @@ namespace CustomSeed.Web.Tests
         [Fact]
         public async Task Cannot_Read_Values_After_Sign_Out()
         {
+            await SignIn(TestServerTest.username, TestServerTest.password);
+            await SignOut();
+
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, _fixture.Url + "api/Value");
 
             HttpResponseMessage response = await _fixture.Client.SendAsync(request);
 
-            Assert.Equal(HttpStatusCode.Redirect, response.StatusCode);
+            Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
         }
 
     }
