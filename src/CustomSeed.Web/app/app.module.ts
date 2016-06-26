@@ -1,2 +1,2 @@
 ﻿
-angular.module("customSeed");
+angular.module("customSeed", []);
