@@ -13,6 +13,7 @@ namespace CustomSeed.Web.Tests
     {
         private readonly TestServer _server;
         public HttpClient Client { get; }
+        public string Url { get; } = "http://localhost/";
 
         public TestServerFixture()
         {
@@ -27,7 +28,7 @@ namespace CustomSeed.Web.Tests
             _server = new TestServer(builder);
 
             Client = _server.CreateClient();
-            Client.BaseAddress = new Uri("http://localhost");
+            Client.BaseAddress = new Uri(Url);
         }
 
         public void Dispose()

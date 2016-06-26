@@ -13,11 +13,13 @@ namespace CustomSeed.Web
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app)
         {
             app.UseFileServer();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
