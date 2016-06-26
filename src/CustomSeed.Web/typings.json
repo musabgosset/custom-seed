@@ -1,0 +1,8 @@
+{
+  "name": "asp.net",
+  "dependencies": {},
+  "globalDependencies": {
+    "angular": "registry:dt/angular#1.5.0+20160624232637",
+    "jquery": "registry:dt/jquery#1.10.0+20160620094458"
+  }
+}
