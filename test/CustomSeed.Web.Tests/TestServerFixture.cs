@@ -28,6 +28,7 @@ namespace CustomSeed.Web.Tests
             _server = new TestServer(builder);
 
             Client = _server.CreateClient();
+
             Client.BaseAddress = new Uri(Url);
         }
 

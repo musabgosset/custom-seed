@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace CustomSeed.Web
 {
@@ -13,11 +14,18 @@ namespace CustomSeed.Web
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication();
             services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app)
         {
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
+            {
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true
+            });
+
             app.UseFileServer();
             app.UseMvcWithDefaultRoute();
         }
