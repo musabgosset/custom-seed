@@ -9,6 +9,11 @@ var tsProject = ts.createProject('tsconfig.json', { sortOutput: true });
 gulp.task('default', ['scripts', 'copy'], function () {
 
     gulp.src([
+        'node_modules/bootstrap/dist/css/bootstrap.css',
+        'node_modules/bootstrap/dist/css/bootstrap.css.map',
+        'node_modules/bootstrap/dist/css/bootstrap.min.css',
+        'node_modules/bootstrap/dist/css/bootstrap.min.css.map',
+
         'node_modules/angular/angular.js',
         'node_modules/angular/angular.min.js',
         'node_modules/angular/angular.min.js.map',
