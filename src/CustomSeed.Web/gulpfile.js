@@ -1,6 +1,7 @@
 ﻿
 var gulp = require('gulp');
 var ts = require('gulp-typescript');
+var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 
 var tsProject = ts.createProject('tsconfig.json', { sortOutput: true });
@@ -18,6 +19,7 @@ gulp.task('scripts', function () {
         .pipe(ts(tsProject));
 
     return tsResult.js
-        .pipe(sourcemaps.write(/*'.', { sourceRoot: function(file) { return file.cwd + '/app'; } }*/))
+        .pipe(concat('app.js'))
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('wwwroot/app'));
 });

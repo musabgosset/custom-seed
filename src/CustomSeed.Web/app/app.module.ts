@@ -1,2 +1,6 @@
 ﻿
-angular.module("customSeed", []);
+namespace CustomSeed {
+
+    var customSeed = angular.module("customSeed", []);
+
+}
