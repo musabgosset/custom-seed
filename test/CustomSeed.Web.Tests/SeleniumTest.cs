@@ -42,7 +42,8 @@ namespace CustomSeed.Web.Tests
         {
             _driver.Navigate().GoToUrl(_fixture.Url);
             IWebElement firstComponent = _driver.FindElement(By.TagName("first-component"));
-            
+            Thread.Sleep(1000);
+
             Assert.Contains("First component (with transclusion)", firstComponent.Text);
         }
 
