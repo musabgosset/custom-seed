@@ -12,6 +12,11 @@ gulp.task('default', ['scripts', 'copy'], function () {
         'node_modules/angular/angular.js',
         'node_modules/angular/angular.min.js',
         'node_modules/angular/angular.min.js.map',
+
+        'node_modules/angular-route/angular-route.js',
+        'node_modules/angular-route/angular-route.min.js',
+        'node_modules/angular-route/angular-route.min.js.map',
+
         'node_modules/angular-translate/dist/angular-translate.js',
         'node_modules/angular-translate/dist/angular-translate.min.js'
     ], { base: 'node_modules' })

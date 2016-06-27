@@ -27,17 +27,6 @@ namespace CustomSeed.Web.Tests
             this._fixture = fixture;
         }
 
-        [Fact]
-        public async Task Can_Read_DefaultPage()
-        {
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, _fixture.Url);
-            HttpResponseMessage response = await _fixture.Client.SendAsync(request);
-            string responseContent = await response.Content.ReadAsStringAsync();
-
-            response.EnsureSuccessStatusCode();
-            Assert.Contains("Index page", responseContent);
-        }
-
         private async Task<HttpResponseMessage> GetSignInResponse(string username, string password)
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, _fixture.Url + "api/User/SignIn");

@@ -3,6 +3,7 @@
   "dependencies": {},
   "globalDependencies": {
     "angular": "registry:dt/angular#1.5.0+20160624232637",
+    "angular-route": "registry:dt/angular-route#1.3.0+20160317120654",
     "angular-translate": "registry:dt/angular-translate#2.4.0+20160619081544",
     "jquery": "registry:dt/jquery#1.10.0+20160620094458"
   }

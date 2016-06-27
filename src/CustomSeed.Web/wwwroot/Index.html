@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <script src="libs/angular/angular.js"></script>
+    <script src="libs/angular-route/angular-route.js"></script>
     <script src="libs/angular-translate/dist/angular-translate.js"></script>
     <script src="app/app.js"></script>
     <title></title>
@@ -21,9 +22,6 @@
     </style>
 </head>
 <body>
-    <modal-layout>
-        Index page (ng: {{ "active" }}, <span translate=".TRANSLATED"></span>)
-        <first-component>with transclusion</first-component>
-    </modal-layout>
+    <ng-view></ng-view>
 </body>
 </html>

@@ -26,8 +26,18 @@ namespace CustomSeed.Web.Tests
         {
             _driver.Navigate().GoToUrl(_fixture.Url);
 
-            Assert.Contains("Index page", _driver.PageSource);
             Assert.Contains("ng: active", _driver.PageSource);
+        }
+
+        [Theory(DisplayName = "Page accessible")]
+        [InlineData("", "Index page")]
+        [InlineData("#/login", "Login")]
+        public void Page_Accessible(string url, string title)
+        {
+            _driver.Navigate().GoToUrl(_fixture.Url + url);
+            string text = _driver.FindElement(By.TagName("body")).Text;
+
+            Assert.Contains(title, text);
         }
 
         [Fact]
