@@ -25,5 +25,5 @@ gulp.task('scripts', function () {
 });
 
 gulp.task('watch', ['scripts'], function() {
-    gulp.watch('app/*.ts', ['scripts']);
+    gulp.watch(['tsconfig.json', 'app/*.ts'], ['scripts']);
 });
