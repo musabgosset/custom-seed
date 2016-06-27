@@ -4,6 +4,7 @@ using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -34,6 +35,15 @@ namespace CustomSeed.Web.Tests
             _driver.Navigate().GoToUrl(_fixture.Url);
 
             Assert.Contains("translated", _driver.PageSource);
+        }
+
+        [Fact]
+        public void Can_Read_Component()
+        {
+            _driver.Navigate().GoToUrl(_fixture.Url);
+            IWebElement firstComponent = _driver.FindElement(By.TagName("first-component"));
+            
+            Assert.Contains("First component (with transclusion)", firstComponent.Text);
         }
 
         [Fact]

@@ -6,7 +6,7 @@ var sourcemaps = require('gulp-sourcemaps');
 
 var tsProject = ts.createProject('tsconfig.json', { sortOutput: true });
 
-gulp.task('default', ['scripts'], function () {
+gulp.task('default', ['scripts', 'copy'], function () {
 
     gulp.src([
         'node_modules/angular/angular.js',
@@ -16,6 +16,11 @@ gulp.task('default', ['scripts'], function () {
         'node_modules/angular-translate/dist/angular-translate.min.js'
     ], { base: 'node_modules' })
         .pipe(gulp.dest('wwwroot/libs'));
+});
+
+gulp.task('copy', function () {
+
+    gulp.src('app/**/*.html', { base: 'app' }).pipe(gulp.dest('wwwroot/app'));
 });
 
 gulp.task('scripts', function () {
@@ -30,6 +35,8 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest('wwwroot/app'));
 });
 
-gulp.task('watch', ['scripts'], function() {
+gulp.task('watch', ['scripts', 'copy'], function () {
+
     gulp.watch(['tsconfig.json', 'app/*.ts'], ['scripts']);
+    gulp.watch('app/**/*.html', ['copy']);
 });

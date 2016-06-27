@@ -1,4 +1,5 @@
-﻿
+﻿/// <reference path="components/first-component.component.ts" />
+
 namespace CustomSeed {
 
     var customSeed = angular.module("customSeed", [
@@ -15,4 +16,7 @@ namespace CustomSeed {
                 }
             });
     });
+
+    customSeed.component(FirstComponent.name, FirstComponent);
+
 }
