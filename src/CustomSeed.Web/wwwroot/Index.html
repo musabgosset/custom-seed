@@ -6,9 +6,24 @@
     <script src="libs/angular-translate/dist/angular-translate.js"></script>
     <script src="app/app.js"></script>
     <title></title>
+
+    <style>
+        html {
+            height: 100%; 
+            width: 100%;
+        }
+
+        body {
+            height: 100%; 
+            width: 100%; 
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
-    Index page (ng: {{ "active" }}, <span translate=".TRANSLATED"></span>)
-    <first-component>with transclusion</first-component>
+    <modal-layout>
+        Index page (ng: {{ "active" }}, <span translate=".TRANSLATED"></span>)
+        <first-component>with transclusion</first-component>
+    </modal-layout>
 </body>
 </html>
