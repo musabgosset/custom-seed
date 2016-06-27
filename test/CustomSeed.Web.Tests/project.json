@@ -12,7 +12,8 @@
     
     "net451": {
       "dependencies": {
-        "Selenium.WebDriver": "2.53.0"
+        "Selenium.WebDriver": "2.53.0",
+        "Selenium.Support": "2.53.0"
       }
     }
   },

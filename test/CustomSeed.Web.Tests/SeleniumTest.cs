@@ -1,6 +1,7 @@
 ﻿#if NET451
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,8 +43,10 @@ namespace CustomSeed.Web.Tests
         {
             _driver.Navigate().GoToUrl(_fixture.Url);
             IWebElement firstComponent = _driver.FindElement(By.TagName("first-component"));
-            
-            Assert.Contains("First component (with transclusion)", firstComponent.Text);
+
+            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(2));
+
+            wait.Until(d => firstComponent.Text.Contains("First component (with transclusion)"));
         }
 
         [Fact]
