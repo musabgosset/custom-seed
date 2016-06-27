@@ -1,12 +1,14 @@
 ﻿<!DOCTYPE html>
-<html ng-app="customSeed">
+<html ng-app="customSeed" translate-namespace="home">
 <head>
     <meta charset="utf-8" />
-    <script src="libs/angular.js"></script>
+    <script src="libs/angular/angular.js"></script>
+    <script src="libs/angular-translate/dist/angular-translate.js"></script>
     <script src="app/app.js"></script>
     <title></title>
 </head>
 <body>
-    Index page (ng: {{ "active" }})
+    Index page (ng: {{ "active" }}, <span translate=".TRANSLATED"></span>)
+
 </body>
 </html>

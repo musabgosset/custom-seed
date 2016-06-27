@@ -8,8 +8,14 @@ var tsProject = ts.createProject('tsconfig.json', { sortOutput: true });
 
 gulp.task('default', ['scripts'], function () {
 
-    gulp.src('node_modules/angular/angular.js').pipe(gulp.dest('wwwroot/libs'));
-
+    gulp.src([
+        'node_modules/angular/angular.js',
+        'node_modules/angular/angular.min.js',
+        'node_modules/angular/angular.min.js.map',
+        'node_modules/angular-translate/dist/angular-translate.js',
+        'node_modules/angular-translate/dist/angular-translate.min.js'
+    ], { base: 'node_modules' })
+        .pipe(gulp.dest('wwwroot/libs'));
 });
 
 gulp.task('scripts', function () {

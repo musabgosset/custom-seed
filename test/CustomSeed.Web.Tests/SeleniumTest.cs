@@ -29,6 +29,14 @@ namespace CustomSeed.Web.Tests
         }
 
         [Fact]
+        public void Can_Read_Translation()
+        {
+            _driver.Navigate().GoToUrl(_fixture.Url);
+
+            Assert.Contains("translated", _driver.PageSource);
+        }
+
+        [Fact]
         public void AngularJS_Is_Active()
         {
             _driver.Navigate().GoToUrl(_fixture.Url);
