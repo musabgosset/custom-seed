@@ -14,11 +14,15 @@ namespace CustomSeed.Web.Tests
     public class SeleniumTest : IClassFixture<KestrelServerFixture<CustomSeed.Web.Startup>>, IDisposable
     {
         private readonly KestrelServerFixture<CustomSeed.Web.Startup> _fixture;
-        private readonly IWebDriver _driver = new ChromeDriver();
+        private readonly IWebDriver _driver;
+        private readonly WebDriverWait _wait;
+
 
         public SeleniumTest(KestrelServerFixture<CustomSeed.Web.Startup> fixture)
         {
             this._fixture = fixture;
+            this._driver = new ChromeDriver();
+            this._wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(2));
         }
 
         [Fact]
@@ -44,8 +48,9 @@ namespace CustomSeed.Web.Tests
         public void Can_Read_Translation()
         {
             _driver.Navigate().GoToUrl(_fixture.Url);
+            IWebElement homePage = _driver.FindElement(By.TagName("home-page"));
 
-            Assert.Contains("translated", _driver.PageSource);
+            _wait.Until(d => homePage.Text.Contains("translated"));
         }
 
         [Fact]
@@ -54,9 +59,8 @@ namespace CustomSeed.Web.Tests
             _driver.Navigate().GoToUrl(_fixture.Url);
             IWebElement firstComponent = _driver.FindElement(By.TagName("first-component"));
 
-            WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(2));
 
-            wait.Until(d => firstComponent.Text.Contains("First component (with transclusion)"));
+            _wait.Until(d => firstComponent.Text.Contains("First component (with transclusion)"));
         }
 
         [Fact]
