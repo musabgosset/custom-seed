@@ -7,7 +7,7 @@ install:
   - cd src\CustomSeed.Web && npm install && cd ..
 branches:
   only:
-    - master
+    - dev
 build_script:
   - build.cmd verify
 clone_depth: 1
