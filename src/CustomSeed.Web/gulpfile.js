@@ -23,3 +23,7 @@ gulp.task('scripts', function () {
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('wwwroot/app'));
 });
+
+gulp.task('watch', ['scripts'], function() {
+    gulp.watch('app/*.ts', ['scripts']);
+});
