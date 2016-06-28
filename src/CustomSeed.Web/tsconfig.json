@@ -6,7 +6,7 @@
     "sourceMap": true,
     "target": "es5",
     "module": "system",
-    "outFile": "app.js"
+    "outFile": "wwwroot/app/app.js"
   },
   "exclude": [
     "node_modules",

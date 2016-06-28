@@ -43,18 +43,18 @@ gulp.task('copy', function () {
 
 gulp.task('scripts', function () {
 
-    var tsResult = tsProject.src()
-        .pipe(sourcemaps.init())
-        .pipe(ts(tsProject));
-
-    return tsResult.js
-        .pipe(concat('app.js'))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('wwwroot/app'));
+    //var tsResult = tsProject.src()
+    //    .pipe(sourcemaps.init())
+    //    .pipe(ts(tsProject));
+    //
+    //return tsResult.js
+    //    .pipe(concat('app.js'))
+    //    .pipe(sourcemaps.write())
+    //    .pipe(gulp.dest('wwwroot/app'));
 });
 
 gulp.task('watch', ['scripts', 'copy'], function () {
 
-    gulp.watch(['tsconfig.json', 'app/*.ts'], ['scripts']);
+    //gulp.watch(['tsconfig.json', 'app/*.ts'], ['scripts']);
     gulp.watch('app/**/*.html', ['copy']);
 });
