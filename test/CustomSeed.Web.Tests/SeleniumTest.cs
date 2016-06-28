@@ -25,23 +25,16 @@ namespace CustomSeed.Web.Tests
             this._wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(2));
         }
 
-        [Fact]
-        public void Can_Read_DefaultPage()
-        {
-            _driver.Navigate().GoToUrl(_fixture.Url);
-
-            Assert.Contains("ng: active", _driver.PageSource);
-        }
 
         [Theory(DisplayName = "Page accessible")]
         [InlineData("", "Index page")]
+        [InlineData("", "ng: active")]
         [InlineData("#/login", "Login")]
         public void Page_Accessible(string url, string title)
         {
             _driver.Navigate().GoToUrl(_fixture.Url + url);
-            string text = _driver.FindElement(By.TagName("body")).Text;
 
-            Assert.Contains(title, text);
+            _wait.Until(d => d.FindElement(By.TagName("body")).Text.Contains(title));
         }
 
         [Fact]
@@ -62,14 +55,7 @@ namespace CustomSeed.Web.Tests
 
             _wait.Until(d => firstComponent.Text.Contains("First component (with transclusion)"));
         }
-
-        [Fact]
-        public void AngularJS_Is_Active()
-        {
-            _driver.Navigate().GoToUrl(_fixture.Url);
-
-            Assert.Contains("ng: active", _driver.PageSource);
-        }
+        
 
         public void Dispose()
         {
