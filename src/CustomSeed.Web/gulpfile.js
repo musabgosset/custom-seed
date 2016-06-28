@@ -9,6 +9,14 @@ var tsProject = ts.createProject('tsconfig.json', { sortOutput: true });
 gulp.task('default', ['scripts', 'copy'], function () {
 
     gulp.src([
+        'node_modules/systemjs/dist/system.js',
+        'node_modules/systemjs/dist/system.js.map',
+        'node_modules/systemjs/dist/system.src.js',
+        'node_modules/systemjs/dist/system-polyfills.js',
+        'node_modules/systemjs/dist/system-polyfills.js.map',
+        'node_modules/systemjs/dist/system-polyfills.src.js',
+
+
         'node_modules/bootstrap/dist/css/bootstrap.css',
         'node_modules/bootstrap/dist/css/bootstrap.css.map',
         'node_modules/bootstrap/dist/css/bootstrap.min.css',

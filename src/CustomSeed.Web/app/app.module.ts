@@ -1,40 +1,37 @@
-﻿/// <reference path="layouts/administration-layout.component.ts" />
-/// <reference path="layouts/modal-layout.component.ts" />
+﻿
+import { AdministrationLayout } from "./layouts/administration-layout.component";
+import { ModalLayout } from "./layouts/modal-layout.component";
 
-/// <reference path="components/first-component.component.ts" />
+import { HomePage } from "./pages/home-page.component";
+import { LoginPage } from "./pages/login-page.component";
 
-/// <reference path="pages/home-page.component.ts" />
-/// <reference path="pages/login-page.component.ts" />
+import { FirstComponent } from "./components/first-component.component";
 
-namespace CustomSeed {
+var customSeed = angular.module("customSeed", [
+    "ngRoute",
+    "pascalprecht.translate"
+]);
 
-    var customSeed = angular.module("customSeed", [
-        "ngRoute",
-        "pascalprecht.translate"
-    ]);
+customSeed.config(($routeProvider: ng.route.IRouteProvider) => {
+    $routeProvider.when("/", { template: '<home-page></home-page>' });
+    $routeProvider.when("/login", { template: '<login-page></login-page>' });
+});
 
-    customSeed.config(($routeProvider: ng.route.IRouteProvider) => {
-        $routeProvider.when("/", { template: '<home-page></home-page>' });
-        $routeProvider.when("/login", { template: '<login-page></login-page>' });
-    });
+customSeed.config(($translateProvider: ng.translate.ITranslateProvider) => {
+    $translateProvider
+        .useSanitizeValueStrategy("escape")
+        .preferredLanguage("en")
+        .translations("en", {
+            home: {
+                TRANSLATED: "translated"
+            }
+        });
+});
 
-    customSeed.config(($translateProvider: ng.translate.ITranslateProvider) => {
-        $translateProvider
-            .useSanitizeValueStrategy("escape")
-            .preferredLanguage("en")
-            .translations("en", {
-                home: {
-                    TRANSLATED: "translated"
-                }
-            });
-    });
+customSeed.component(AdministrationLayout.name, AdministrationLayout);
+customSeed.component(ModalLayout.name, ModalLayout);
 
-    customSeed.component(AdministrationLayout.name, AdministrationLayout);
-    customSeed.component(ModalLayout.name, ModalLayout);
+customSeed.component(HomePage.name, HomePage);
+customSeed.component(LoginPage.name, LoginPage);
 
-    customSeed.component(HomePage.name, HomePage);
-    customSeed.component(LoginPage.name, LoginPage);
-
-    customSeed.component(FirstComponent.name, FirstComponent);
-
-}
+customSeed.component(FirstComponent.name, FirstComponent);
