@@ -7,14 +7,14 @@ import { LoginPage } from "./pages/login-page.component";
 
 import { FirstComponent } from "./components/first-component.component";
 
-var customSeed = angular.module("customSeed", [
+var customSeed: ng.IModule = angular.module("customSeed", [
     "ngRoute",
     "pascalprecht.translate"
 ]);
 
 customSeed.config(($routeProvider: ng.route.IRouteProvider) => {
-    $routeProvider.when("/", { template: '<home-page></home-page>' });
-    $routeProvider.when("/login", { template: '<login-page></login-page>' });
+    $routeProvider.when("/", { template: "<home-page></home-page>" });
+    $routeProvider.when("/login", { template: "<login-page></login-page>" });
 });
 
 customSeed.config(($translateProvider: ng.translate.ITranslateProvider) => {
