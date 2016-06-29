@@ -8,7 +8,8 @@
     "gulp-typescript": "^2.13.6",
     "gulp-concat": "^2.6.0",
     "gulp-sourcemaps": "^1.6.0",
-    "typings": "^1.3.0"
+    "typings": "^1.3.0",
+    "through2": "^2.0.1"
   },
   "dependencies": {
     "systemjs": "^0.19.31",
