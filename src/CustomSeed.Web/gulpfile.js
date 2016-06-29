@@ -4,7 +4,9 @@ var ts = require('gulp-typescript');
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 
-var tsProject = ts.createProject('tsconfig.json', { sortOutput: true });
+var through = require('through2');
+
+var tsProject = ts.createProject('tsconfig.json', { outFile: 'app.js'  });
 
 gulp.task('default', ['scripts', 'copy'], function () {
 
@@ -43,18 +45,35 @@ gulp.task('copy', function () {
 
 gulp.task('scripts', function () {
 
-    //var tsResult = tsProject.src()
-    //    .pipe(sourcemaps.init())
-    //    .pipe(ts(tsProject));
-    //
-    //return tsResult.js
-    //    .pipe(concat('app.js'))
-    //    .pipe(sourcemaps.write())
-    //    .pipe(gulp.dest('wwwroot/app'));
+    function prefixSources(prefix) {
+        function process(file, encoding, callback) {
+
+            if (file.sourceMap) {
+                for (i in file.sourceMap.sources) {
+                    var source = file.sourceMap.sources[i];
+                    file.sourceMap.sources[i] = prefix + source;
+                }
+            }
+
+            this.push(file);
+            return callback();
+        }
+
+        return through.obj(process);
+    }
+
+    var tsResult = tsProject.src()
+        .pipe(sourcemaps.init())
+        .pipe(ts(tsProject));
+
+    return tsResult.js
+        .pipe(prefixSources('../../app/'))
+        .pipe(sourcemaps.write('.', { sourceRoot: "", includeContent: false }))
+        .pipe(gulp.dest('wwwroot/app'));
 });
 
 gulp.task('watch', ['scripts', 'copy'], function () {
 
-    //gulp.watch(['tsconfig.json', 'app/*.ts'], ['scripts']);
+    gulp.watch(['tsconfig.json', 'app/*.ts'], ['scripts']);
     gulp.watch('app/**/*.html', ['copy']);
 });
