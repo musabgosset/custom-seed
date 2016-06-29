@@ -1,5 +1,6 @@
 ﻿
 using CustomSeed.Web.Controllers;
+using CustomSeed.Web.Models;
 using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -30,7 +31,7 @@ namespace CustomSeed.Web.Tests
         private async Task<HttpResponseMessage> GetSignInResponse(string username, string password)
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, _fixture.Url + "api/User/SignIn");
-            LoginViewModel viewModel = new LoginViewModel { Username = username, Password = password };
+            SignInViewModel viewModel = new SignInViewModel { Username = username, Password = password };
             request.Content = new StringContent(JsonConvert.SerializeObject(viewModel), Encoding.UTF8, "application/json");
 
             HttpResponseMessage response = await _fixture.Client.SendAsync(request);

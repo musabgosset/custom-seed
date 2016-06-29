@@ -6,30 +6,28 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Principal;
 using Microsoft.AspNetCore.Authorization;
+using CustomSeed.Web.Models;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace CustomSeed.Web.Controllers
 {
-    public class LoginViewModel
-    {
-        public string Username { get; set; }
-        public string Password { get; set; }
-    }
-
     [Route("api/[controller]")]
     public class UserController : Controller
     {
         [HttpPost]
         [Route("SignIn")]
-        public async Task<ActionResult> SignIn([FromBody]LoginViewModel viewModel)
+        public async Task<ActionResult> SignIn([FromBody]SignInViewModel viewModel)
         {
             if (viewModel.Username != "Me" || viewModel.Password != "MyPassword")
             {
                 return new BadRequestResult();
             }
             
-            IIdentity identity = new GenericIdentity("Me", CookieAuthenticationDefaults.AuthenticationScheme);
+            IIdentity identity = new GenericIdentity(
+                viewModel.Username, 
+                CookieAuthenticationDefaults.AuthenticationScheme);
+
             GenericPrincipal principal = new GenericPrincipal(identity, new string[0]);
 
             await HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
