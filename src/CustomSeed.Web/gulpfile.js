@@ -11,7 +11,7 @@ var through = require('through2');
 
 var tsProject = ts.createProject('tsconfig.json', { outFile: 'app.js'  });
 
-gulp.task('default', ['scripts', 'copy'], function () {
+gulp.task('default', ['scripts', 'copy', 'styles'], function () {
 
     gulp.src([
         'node_modules/systemjs/dist/system.js',
@@ -77,8 +77,12 @@ gulp.task('scripts', function () {
 
 gulp.task('styles', function () {
     
-    return gulp.src('styles/style.scss')
-        .pipe(sass().on('error', sass.logError))
+    return gulp.src('styles/**/*.scss')
+        .pipe(sourcemaps.init())
+        .pipe(sass.sync({
+            includePaths: ['node_modules/bootstrap-sass/assets/stylesheets'],
+        }).on('error', sass.logError))
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('wwwroot/css'));
 });
 
