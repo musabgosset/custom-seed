@@ -1,6 +1,9 @@
 ﻿
 var gulp = require('gulp');
+
 var ts = require('gulp-typescript');
+var sass = require('gulp-sass');
+
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 
@@ -72,8 +75,16 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest('wwwroot/app'));
 });
 
+gulp.task('styles', function () {
+    
+    return gulp.src('styles/style.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('wwwroot/css'));
+});
+
 gulp.task('watch', ['scripts', 'copy'], function () {
 
     gulp.watch(['tsconfig.json', 'app/*.ts'], ['scripts']);
     gulp.watch('app/**/*.html', ['copy']);
+    gulp.watch('styles/**/*.scss', ['styles']);
 });
