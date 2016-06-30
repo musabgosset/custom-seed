@@ -7,31 +7,27 @@ import { LoginPage } from "./pages/login-page.component";
 
 import { FirstComponent } from "./components/first-component.component";
 
-var customSeed: ng.IModule = angular.module("customSeed", [
-    "ngRoute",
-    "pascalprecht.translate"
-]);
-
-customSeed.config(($routeProvider: ng.route.IRouteProvider) => {
-    $routeProvider.when("/", { template: "<home-page></home-page>" });
-    $routeProvider.when("/login", { template: "<login-page></login-page>" });
-});
-
-customSeed.config(($translateProvider: ng.translate.ITranslateProvider) => {
-    $translateProvider
-        .useSanitizeValueStrategy("escape")
-        .preferredLanguage("en")
-        .translations("en", {
-            home: {
-                TRANSLATED: "translated"
-            }
-        });
-});
-
-customSeed.component(AdministrationLayout.name, AdministrationLayout);
-customSeed.component(ModalLayout.name, ModalLayout);
-
-customSeed.component(HomePage.name, HomePage);
-customSeed.component(LoginPage.name, LoginPage);
-
-customSeed.component(FirstComponent.name, FirstComponent);
+angular
+    .module("customSeed", [
+        "ngRoute",
+        "pascalprecht.translate"
+    ])
+    .config(($routeProvider: ng.route.IRouteProvider) => {
+        $routeProvider.when("/", { template: "<home-page></home-page>" });
+        $routeProvider.when("/login", { template: "<login-page></login-page>" });
+    })
+    .config(($translateProvider: ng.translate.ITranslateProvider) => {
+        $translateProvider
+            .useSanitizeValueStrategy("escape")
+            .preferredLanguage("en")
+            .translations("en", {
+                home: {
+                    TRANSLATED: "translated"
+                }
+            });
+    })
+    .component(AdministrationLayout.name, AdministrationLayout)
+    .component(ModalLayout.name, ModalLayout)
+    .component(HomePage.name, HomePage)
+    .component(LoginPage.name, LoginPage)
+    .component(FirstComponent.name, FirstComponent);
