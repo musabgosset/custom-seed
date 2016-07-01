@@ -1,5 +1,6 @@
 ﻿
 var gulp = require('gulp');
+var del = require('del');
 
 var ts = require('gulp-typescript');
 var sass = require('gulp-sass');
@@ -11,9 +12,14 @@ var through = require('through2');
 
 var tsProject = ts.createProject('tsconfig.json', { outFile: 'app.js'  });
 
-gulp.task('default', ['scripts', 'copy', 'styles'], function () {
+gulp.task('clean', function () {
 
-    gulp.src([
+     return del(['wwwroot/app', 'wwwroot/css', 'wwwroot/libs']);
+});
+
+gulp.task('default', ['clean', 'copy', 'scripts', 'styles'], function () {
+
+    return gulp.src([
         'node_modules/systemjs/dist/system.js',
         'node_modules/systemjs/dist/system.js.map',
         'node_modules/systemjs/dist/system.src.js',
@@ -43,7 +49,7 @@ gulp.task('default', ['scripts', 'copy', 'styles'], function () {
 
 gulp.task('copy', function () {
 
-    gulp.src('app/**/*.html', { base: 'app' }).pipe(gulp.dest('wwwroot/app'));
+    return gulp.src('app/**/*.html', { base: 'app' }).pipe(gulp.dest('wwwroot/app'));
 });
 
 gulp.task('scripts', function () {
