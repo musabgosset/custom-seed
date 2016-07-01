@@ -97,7 +97,7 @@ gulp.task('sass:bootstrap', function () {
 
 gulp.task('watch', ['default'], function () {
 
-    gulp.watch(['tsconfig.json', 'app/*.ts'], ['scripts']);
+    gulp.watch(['tsconfig.json', 'app/**/*.ts'], ['scripts']);
     gulp.watch('app/**/*.html', ['copy']);
     gulp.watch('styles/**/*.scss', ['styles']);
 });
