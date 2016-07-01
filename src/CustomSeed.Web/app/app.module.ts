@@ -1,9 +1,9 @@
 ﻿
-import { AdministrationLayout } from "./layouts/administration-layout.component";
-import { ModalLayout } from "./layouts/modal-layout.component";
+import { AdministrationLayout } from "./layouts/administration.layout";
+import { ModalLayout } from "./layouts/modal.layout";
 
-import { HomePage } from "./pages/home-page.component";
-import { LoginPage } from "./pages/login-page.component";
+import { HomePage } from "./pages/home.page";
+import { LoginPage } from "./pages/login.page";
 
 import { FirstComponent } from "./components/first-component.component";
 
