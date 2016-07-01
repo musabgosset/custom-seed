@@ -22,10 +22,10 @@ gulp.task('default', ['scripts', 'copy', 'styles'], function () {
         'node_modules/systemjs/dist/system-polyfills.src.js',
 
 
-        'node_modules/bootstrap/dist/css/bootstrap.css',
-        'node_modules/bootstrap/dist/css/bootstrap.css.map',
-        'node_modules/bootstrap/dist/css/bootstrap.min.css',
-        'node_modules/bootstrap/dist/css/bootstrap.min.css.map',
+        //'node_modules/bootstrap/dist/css/bootstrap.css',
+        //'node_modules/bootstrap/dist/css/bootstrap.css.map',
+        //'node_modules/bootstrap/dist/css/bootstrap.min.css',
+        //'node_modules/bootstrap/dist/css/bootstrap.min.css.map',
 
         'node_modules/angular/angular.js',
         'node_modules/angular/angular.min.js',
@@ -75,18 +75,27 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest('wwwroot/app'));
 });
 
-gulp.task('styles', function () {
+gulp.task('styles', ['sass:bootstrap'], function () {
     
     return gulp.src('styles/**/*.scss')
+        .pipe(sourcemaps.init())
+        .pipe(sass.sync().on('error', sass.logError))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('wwwroot/css'));
+});
+
+gulp.task('sass:bootstrap', function () {
+    
+    return gulp.src('bootstrap/bootstrap.scss')
         .pipe(sourcemaps.init())
         .pipe(sass.sync({
             includePaths: ['node_modules/bootstrap-sass/assets/stylesheets'],
         }).on('error', sass.logError))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('wwwroot/css'));
+        .pipe(gulp.dest('wwwroot/libs/bootstrap/dist/css'));
 });
 
-gulp.task('watch', ['scripts', 'copy'], function () {
+gulp.task('watch', ['default'], function () {
 
     gulp.watch(['tsconfig.json', 'app/*.ts'], ['scripts']);
     gulp.watch('app/**/*.html', ['copy']);

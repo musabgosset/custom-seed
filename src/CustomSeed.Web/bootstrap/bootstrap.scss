@@ -4,8 +4,12 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
+$brand-primary: rgb(3, 170, 233);
+
 // Core variables and mixins
 @import "bootstrap/variables";
+
+
 @import "bootstrap/mixins";
 
 // Reset and dependencies

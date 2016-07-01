@@ -55,7 +55,18 @@ namespace CustomSeed.Web.Tests
 
             _wait.Until(d => firstComponent.Text.Contains("First component (with transclusion)"));
         }
-        
+
+        [Fact(DisplayName = "Bootstrap custom")]
+        public void Bootstrap_IsCustomBuild()
+        {
+            _driver.Navigate().GoToUrl(_fixture.Url + "#/login");
+            
+            IWebElement button = _wait.Until(d => d.FindElement(By.CssSelector(".btn-primary")));
+            string bg = button.GetCssValue("background-color");
+
+            Assert.Equal("rgba(3, 170, 233, 1)", bg);
+        }
+
 
         public void Dispose()
         {
