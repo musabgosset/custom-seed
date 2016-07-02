@@ -101,9 +101,10 @@ gulp.task('sass:bootstrap', function () {
         .pipe(gulp.dest('wwwroot/libs/bootstrap/dist/css'));
 });
 
-gulp.task('watch', ['default'], function () {
+gulp.task('watch', function () {
 
     gulp.watch(['tsconfig.json', 'app/**/*.ts'], ['scripts']);
     gulp.watch('app/**/*.html', ['copy']);
-    gulp.watch('styles/**/*.scss', ['styles']);
+    gulp.watch(['styles/**/*.scss'], ['styles']);
+    gulp.watch(['bootstrap/**/*.scss'], ['sass:bootstrap']);
 });
