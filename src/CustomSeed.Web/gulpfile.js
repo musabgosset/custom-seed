@@ -45,6 +45,9 @@ gulp.task('default', ['clean', 'copy', 'scripts', 'styles'], function () {
         'node_modules/angular-translate/dist/angular-translate.min.js'
     ], { base: 'node_modules' })
         .pipe(gulp.dest('wwwroot/libs'));
+
+    // delete the folder to prevent KoreBuild from finding the .vcxproj
+    del('node_modules\node-sass\src\libsass\win');
 });
 
 gulp.task('copy', function () {
