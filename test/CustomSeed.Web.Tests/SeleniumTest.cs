@@ -11,17 +11,16 @@ using Xunit;
 
 namespace CustomSeed.Web.Tests
 {
-    public class SeleniumTest : IClassFixture<KestrelServerFixture<CustomSeed.Web.Startup>>, IDisposable
+    public class SeleniumTest : IClassFixture<KestrelServerFixture<CustomSeed.Web.Startup>>
     {
         private readonly KestrelServerFixture<CustomSeed.Web.Startup> _fixture;
-        private readonly IWebDriver _driver;
         private readonly WebDriverWait _wait;
-
-
+        private readonly IWebDriver _driver;
+        
         public SeleniumTest(KestrelServerFixture<CustomSeed.Web.Startup> fixture)
         {
             this._fixture = fixture;
-            this._driver = new ChromeDriver();
+            this._driver = fixture.Driver;
             this._wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(2));
         }
 
@@ -65,12 +64,6 @@ namespace CustomSeed.Web.Tests
             string bg = button.GetCssValue("background-color");
 
             Assert.Equal("rgba(3, 170, 233, 1)", bg);
-        }
-
-
-        public void Dispose()
-        {
-            _driver.Dispose();
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.DotNet.ProjectModel.Resolution;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,7 @@ namespace CustomSeed.Web.Tests
 
         public IWebHost WebHost { get; }
         public string Url { get; } = "http://localhost:5000/";
+        public IWebDriver Driver { get; }
 
         public KestrelServerFixture()
         {
@@ -25,11 +28,15 @@ namespace CustomSeed.Web.Tests
             WebHost = builder.Build();
 
             Task.Run(() => WebHost.Run(source.Token));
+
+            Driver = new ChromeDriver();
         }
 
         public void Dispose()
         {
             source.Cancel();
+
+            Driver.Dispose();
         }
     }
 }
