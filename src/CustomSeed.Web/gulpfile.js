@@ -21,7 +21,7 @@ gulp.task('clean', function () {
 gulp.task('default', function (callback) {
 
     // delete the folder to prevent KoreBuild from finding the .vcxproj
-    del('node_modules\node-sass\src\libsass\win');
+    del('node_modules/node-sass/src/libsass/win');
 
     // 1. Run 'clean' (obviously required to finish first)
     // 2. Run 'copy' and 'scripts' in parallel (independent from each other)
