@@ -21,6 +21,7 @@
   "dependencies": {
     "systemjs": "^0.19.31",
     "angular": "^1.5.7",
+    "angular-messages": "^1.5.7",
     "angular-translate": "^2.11.0",
     "angular-route": "^1.5.7",
     "bootstrap": "^3.3.6"

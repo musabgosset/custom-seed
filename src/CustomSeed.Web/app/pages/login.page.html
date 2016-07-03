@@ -1,25 +1,35 @@
 ﻿
-
 <modal-layout>
 
-    <form style="max-width: 300px">
+    <form name="$ctrl.form" style="width: 300px" ng-submit="$ctrl.submit()" novalidate>
+        
         <h2>Login</h2>
 
         <div class="form-group">
             <label for="username">Nom d'utilisateur</label>
-            <input type="text" id="username" class="form-control" required autofocus>
+            <input type="text" id="username" name="username" ng-model="$ctrl.viewModel.username" class="form-control" required autofocus>
+            <ng-messages ng-show="$ctrl.form.$submitted" for="$ctrl.form.username.$error">
+                <ng-message when="required">Veuillez entrer votre nom d'utilisateur</ng-message>
+            </ng-messages>
         </div>
 
         <div class="form-group">
             <label for="password">Mot de passe</label>
-            <input type="password" id="password" class="form-control" required>
+            <input type="password" id="password" name="password" ng-model="$ctrl.viewModel.password" class="form-control" required>
+            <ng-messages ng-show="$ctrl.form.$submitted" for="$ctrl.form.password.$error">
+                <ng-message when="required">Veuillez entrer votre mot de passe</ng-message>
+            </ng-messages>
         </div>
 
         <div class="checkbox">
             <label>
-                <input type="checkbox" id="rememberMe"> Connexion persistante
+                <input type="checkbox" id="rememberMe" ng-model="$ctrl.viewModel.rememberMe"> Connexion persistante
             </label>
         </div>
+
+        <p>
+            {{ $ctrl.error }}
+        </p>
 
         <button type="submit" class="btn btn-primary" style="float: right">Se connecter</button>
     </form>

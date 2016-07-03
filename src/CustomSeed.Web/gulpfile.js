@@ -54,6 +54,10 @@ gulp.task('copy:libs', function () {
         'node_modules/angular-route/angular-route.min.js',
         'node_modules/angular-route/angular-route.min.js.map',
 
+        'node_modules/angular-messages/angular-messages.js',
+        'node_modules/angular-messages/angular-messages.min.js',
+        'node_modules/angular-messages/angular-messages.min.js.map',
+
         'node_modules/angular-translate/dist/angular-translate.js',
         'node_modules/angular-translate/dist/angular-translate.min.js'
     ], { base: 'node_modules' })

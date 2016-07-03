@@ -35,6 +35,18 @@ namespace CustomSeed.Web.Controllers
             return Ok();
         }
 
+        [Authorize]
+        [HttpGet]
+        public User Get()
+        {
+            User user = new User
+            {
+                Username = User.Identity.Name
+            };
+
+            return user;
+        }
+
         [HttpPost]
         [Authorize]
         [Route("SignOut")]
