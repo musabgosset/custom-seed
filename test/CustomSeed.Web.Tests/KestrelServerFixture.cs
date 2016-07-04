@@ -12,17 +12,22 @@ namespace CustomSeed.Web.Tests
 {
     public class KestrelServerFixture<TStartup> : IDisposable
     {
+        private static int _port = 5000;
+
         private readonly CancellationTokenSource source = new CancellationTokenSource();
 
         public IWebHost WebHost { get; }
-        public string Url { get; } = "http://localhost:5000/";
+        public string Url { get; }
         public IWebDriver Driver { get; }
 
         public KestrelServerFixture()
         {
+            Url = "http://localhost:" + (_port++) + "/";
+
             IWebHostBuilder builder = new WebHostBuilder()
                 .UseContentRoot("../../../../../../src/CustomSeed.Web")
                 .UseKestrel()
+                .UseUrls(Url)
                 .UseStartup(typeof(TStartup));
 
             WebHost = builder.Build();
